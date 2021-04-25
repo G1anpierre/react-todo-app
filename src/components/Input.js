@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import { connect } from "react-redux";
+import { addtodo } from "../actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,14 +13,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Input = () => {
+const Input = ({ addtodo }) => {
   const classes = useStyles();
-  const inputEl = React.useRef();
+  const inputEl = useRef();
 
   function handleSubmit(event) {
     event.preventDefault();
     let endValue = inputEl.current.value;
     console.log(endValue);
+    addtodo(endValue);
   }
 
   return (
@@ -40,4 +43,10 @@ const Input = () => {
   );
 };
 
-export default Input;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addtodo: (endValue) => dispatch(addtodo(endValue)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Input);

@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core";
 import Input from "../components/Input";
+import Todos from "../components/Todos";
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
@@ -21,6 +22,7 @@ const Main = () => {
       <Header />
       <Container className={classes.containerStyle}>
         <Input />
+        <Todos />
       </Container>
     </>
   );
