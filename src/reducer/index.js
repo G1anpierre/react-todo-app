@@ -1,15 +1,18 @@
-import { DELETE_TODO, ADD_TODO, EDIT_TODO } from "../types";
+import { DELETE_TODO, ADD_TODO, EDIT_TODO, DONE_TODO } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
-  todos: [{ name: "Redux Update", id: 1234 }],
+  todos: [{ name: "Redux Update", id: 1234, isDone: false }],
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
       return {
-        todos: [...state.todos, { name: action.payload, id: uuidv4() }],
+        todos: [
+          ...state.todos,
+          { name: action.payload, id: uuidv4(), idDone: false },
+        ],
       };
     case DELETE_TODO:
       const copyTodos = [...state.todos];
@@ -22,11 +25,17 @@ function reducer(state = initialState, action) {
     case EDIT_TODO:
       return {
         todos: state.todos.map((element) => {
-          if (element.id === action.payload) {
-            return { ...element, name: action.newText };
-          } else {
-            return element;
-          }
+          return element.id === action.payload
+            ? { ...element, name: action.newText }
+            : element;
+        }),
+      };
+    case DONE_TODO:
+      return {
+        todos: state.todos.map((element) => {
+          return element.id === action.id
+            ? { ...element, isDone: !element.isDone }
+            : element;
         }),
       };
 

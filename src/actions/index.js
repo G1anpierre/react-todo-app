@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO } from "../types";
+import { ADD_TODO, DELETE_TODO, DONE_TODO, EDIT_TODO } from "../types";
 
 function addtodo(endValue) {
   return { type: ADD_TODO, payload: endValue };
@@ -12,4 +12,8 @@ function modifiedTodo(id, newText) {
   return { type: EDIT_TODO, payload: id, newText };
 }
 
-export { addtodo, deletetodo, modifiedTodo };
+function doneTodo(id) {
+  return { type: DONE_TODO, id };
+}
+
+export { addtodo, deletetodo, modifiedTodo, doneTodo };

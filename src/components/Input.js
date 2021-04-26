@@ -22,6 +22,7 @@ const Input = ({ addtodo }) => {
     let endValue = inputEl.current.value;
     console.log(endValue);
     addtodo(endValue);
+    inputEl.current.value = "";
   }
 
   return (
