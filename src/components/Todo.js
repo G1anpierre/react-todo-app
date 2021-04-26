@@ -46,14 +46,10 @@ function Todo({ deleteTodo, modifiedTodo, value }) {
 
   const saveEditChange = (event, id) => {
     if (event.key === "Enter") {
-      console.log("Enter press here!");
-      console.log("Im passing the Id :", id);
       modifiedTodo(id, text);
       setEdit(!edit);
     }
   };
-
-  console.log("que es text: ", text);
 
   return (
     <>
