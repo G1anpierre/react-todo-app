@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 function Todos({ todos }) {
   const classes = useStyles();
 
-  console.log("Que es todos: ", todos);
   return (
     <List className={classes.root}>
       {todos.map((value) => {

@@ -1,4 +1,4 @@
-import { DELETE_TODO, ADD_TODO } from "../types";
+import { DELETE_TODO, ADD_TODO, EDIT_TODO } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
@@ -13,14 +13,23 @@ function reducer(state = initialState, action) {
       };
     case DELETE_TODO:
       const copyTodos = [...state.todos];
-      console.log("id : ", action.payload);
       const foundElement = (element) => element.id === action.payload;
       const index = copyTodos.findIndex(foundElement);
       copyTodos.splice(index, 1);
-      console.log(copyTodos);
       return {
         todos: copyTodos,
       };
+    case EDIT_TODO:
+      return {
+        todos: state.todos.map((element) => {
+          if (element.id === action.payload) {
+            return { ...element, name: action.newText };
+          } else {
+            return element;
+          }
+        }),
+      };
+
     default:
       return state;
   }

@@ -10,8 +10,23 @@ import reportWebVitals from "./reportWebVitals";
 
 let store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true })
 );
+console.log("initial state", store.getState());
+// * Making sure that is has update my Redux
+// * because im passing a new object throuth a deep copy
+let oldValue = store.getState();
+// Everytime you dispatch an action and the reducer finishes running
+// redux will call all the subscribers.
+store.subscribe(() => {
+  let newValue = store.getState();
+  if (newValue === oldValue) {
+    console.log("same");
+  } else {
+    console.log("changed", newValue, oldValue);
+  }
+});
 
 ReactDOM.render(
   <Provider store={store}>
