@@ -11,7 +11,7 @@ function reducer(state = initialState, action) {
       return {
         todos: [
           ...state.todos,
-          { name: action.payload, id: uuidv4(), idDone: false },
+          { name: action.payload, id: uuidv4(), isDone: false },
         ],
       };
     case DELETE_TODO:
