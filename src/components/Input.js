@@ -88,6 +88,7 @@ const Input = ({ addtodo }) => {
     setState((prevState) => ({
       ...prevState,
       search: word,
+      listen: false,
     }));
   }
 
