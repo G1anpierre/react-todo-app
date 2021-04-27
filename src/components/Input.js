@@ -92,8 +92,6 @@ const Input = ({ addtodo }) => {
     }));
   }
 
-  console.log("is listening : ? ", listen);
-
   return (
     <>
       <form
